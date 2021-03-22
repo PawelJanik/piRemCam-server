@@ -1,0 +1,13 @@
+[Unit]
+Description=Example of simple daemon program
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/piremcam \
+	--conf_file /etc/piremcam/piremcam.conf \
+	--log_file /var/log/piremcam.log
+User=root
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
